@@ -1,0 +1,51 @@
+<header class="detalhes-produto-header">
+  <button class="btn-voltar" (click)="voltarPagina()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    <span>Voltar</span>
+  </button>
+  <h1>{{ title }}</h1>
+</header>
+
+@if (produto) {
+  <div class="produto-detalhe-container">
+
+    <div class="produto-header">
+      <h1>{{ produto.nome }}</h1>
+      <div class="preco">R$ {{ produto.preco.toFixed(2) }}</div>
+    </div>
+
+    <div class="produto-info">
+      <div class="descricao">
+        <h2>Descrição</h2>
+        <p>{{ produto.descricao }}</p>
+      </div>
+
+      @if (produto.dimensoes || produto.peso) {
+        <div class="especificacoes">
+          <h2>Especificações</h2>
+          
+          @if (produto.dimensoes) {
+            <div class="dimensoes">
+              <h3>Dimensões</h3>
+              <ul>
+                <li>Altura: {{ produto.dimensoes.altura }} cm</li>
+                <li>Largura: {{ produto.dimensoes.largura }} cm</li>
+                <li>Profundidade: {{ produto.dimensoes.profundidade }} cm</li>
+              </ul>
+            </div>
+          }
+
+          @if (produto.peso) {
+            <div class="peso">
+              <h3>Peso</h3>
+              <p>{{ produto.peso }} kg</p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}

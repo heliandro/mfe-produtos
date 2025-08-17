@@ -1,0 +1,38 @@
+<header class="produtos-header">
+  <button class="btn-voltar" (click)="voltarPagina()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    <span>Voltar</span>
+  </button>
+  <h1>{{ title }}</h1>
+</header>
+
+<div class="produtos-container">
+  
+  <div class="produtos-lista">
+    @for (produto of listaProdutos; track produto.id) {
+      <div class="produto-item">
+        <div class="produto-info">
+          <h3>{{ produto.nome }}</h3>
+          <p class="preco">R$ {{ produto.preco.toFixed(2) }}</p>
+          <p class="status" [class.disponivel]="produto.disponivel" [class.indisponivel]="!produto.disponivel">
+            @if (produto.disponivel) {
+              Disponível
+            } @else {
+              Indisponível
+            }
+          </p>
+        </div>
+        <div class="produto-actions">
+          <a [routerLink]="['../detalhes', produto.id]" class="btn-detalhes">Ver detalhes</a>
+        </div>
+      </div>
+    } @empty {
+      <div class="sem-produtos">
+        <p>Nenhum produto disponível no momento.</p>
+      </div>
+    }
+  </div>
+</div>
